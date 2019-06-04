@@ -1,7 +1,7 @@
 {
-	"_version": "1.5.0",
+	"_version": "1.12.0",
 	"sap.app": {
-		"id": "jerrylist",
+		"id": "my.resume.Resume",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -9,8 +9,6 @@
 		},
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
-		"resources": "resources.json",
-		"ach": "ach",
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.40.12"
@@ -30,27 +28,34 @@
 			"desktop": true,
 			"tablet": true,
 			"phone": true
-		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		}
 	},
 	"sap.ui5": {
+		"flexEnabled": false,
 		"rootView": {
-			"viewName": "jerrylist.view.App",
-			"type": "JS"
+			"viewName": "my.resume.Resume.view.View1",
+			"type": "XML",
+			"async": true,
+			"id": "View1"
 		},
 		"dependencies": {
-			"minUI5Version": "1.30.0",
+			"minUI5Version": "1.60.1",
 			"libs": {
-				"sap.ui.core": {},
-				"sap.m": {},
 				"sap.ui.layout": {},
-				"sap.ushell": {},
-				"sap.collaboration": {},
-				"sap.ui.comp": {},
-				"sap.uxap": {}
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"config": {
+			"sample": {
+				"files": [
+					"Component.js",
+					"manifest.json",
+					"SharedBlocks/BlockBlueT1.js",
+					"SharedBlocks/BlockBlueT1.view.xml",
+					"controller/BlockT1.controller.js",
+					"controller/View1.controller.js"
+				]
 			}
 		},
 		"contentDensities": {
@@ -61,16 +66,41 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "jerrylist.i18n.i18n"
+					"bundleName": "my.resume.Resume.i18n.i18n"
 				}
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "my.resume.Resume.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "RouteView1",
+				"pattern": "RouteView1",
+				"target": [
+					"TargetView1"
+				]
+			}],
+			"targets": {
+				"TargetView1": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "View1",
+					"viewName": "View1"
 				}
-			]
+			}
 		}
 	},
 	"sap.platform.hcp": {
